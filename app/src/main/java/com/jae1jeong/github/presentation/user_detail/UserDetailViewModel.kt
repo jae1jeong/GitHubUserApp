@@ -17,4 +17,4 @@ import javax.inject.Inject
 @HiltViewModel
 class UserDetailViewModel @Inject constructor():BaseViewModel() {
 
-}
+    }
