@@ -2,16 +2,15 @@ package com.jae1jeong.github
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-
-import com.jae1jeong.github.databinding.ActivityMainBinding
+import com.jae1jeong.github.databinding.ActivityUserlistBinding
 
 class UserListActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityUserlistBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityUserlistBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
 
