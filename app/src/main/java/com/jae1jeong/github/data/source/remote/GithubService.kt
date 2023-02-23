@@ -1,5 +1,7 @@
 package com.jae1jeong.github.data.source.remote
 
+import com.jae1jeong.github.data.source.dto.GitHubUserSearchResponse
+import com.jae1jeong.github.utlis.Resource
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -9,7 +11,7 @@ import retrofit2.http.Query
 interface GithubService {
     // search user by keyword
     @GET("search/users")
-    suspend fun searchUsers(@Query("q") query: String): Nothing
+    suspend fun searchUsers(@Query("q") query: String): Resource<GitHubUserSearchResponse>
 
     // user detail
     @GET("users/{username}")
