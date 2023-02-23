@@ -1,18 +1,34 @@
 package com.jae1jeong.github.presentation.user_list
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.jae1jeong.github.R
 import com.jae1jeong.github.databinding.ActivityUserlistBinding
+import com.jae1jeong.github.presentation.base.BaseActivity
 
-class UserListActivity : AppCompatActivity() {
+class UserListActivity: BaseActivity<ActivityUserlistBinding,UserListViewModel>(),BaseActivityBehavior {
 
-    private lateinit var binding: ActivityUserlistBinding
+    override val viewModel: UserListViewModel by viewModels()
+    override val layoutResourceId: Int
+        get() = R.layout.activity_userlist
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityUserlistBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        binding.viewModel = viewModel
     }
 
+    override fun initView() {
+
+    }
+
+    override fun observeData() {
+
+    }
+
+    override fun setEvent() {
+
+    }
 
 }
