@@ -1,6 +1,7 @@
 package com.jae1jeong.github.data.source.remote
 
 import com.jae1jeong.github.data.source.dto.GitHubUserDetailResponse
+import com.jae1jeong.github.data.source.dto.GitHubUserRepoListResponse
 import com.jae1jeong.github.data.source.dto.GitHubUserSearchResponse
 import com.jae1jeong.github.utlis.Resource
 import com.jae1jeong.github.utlis.Routers
@@ -21,5 +22,5 @@ interface GithubService {
 
     // user repos
     @GET(Routers.GET_REPOS)
-    suspend fun getRepos(@Query("username") username: String): Nothing
+    suspend fun getRepos(@Query("username") username: String): Resource<GitHubUserRepoListResponse>
 }
