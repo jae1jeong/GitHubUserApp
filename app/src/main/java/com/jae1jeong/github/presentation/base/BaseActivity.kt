@@ -4,8 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import com.jae1jeong.github.presentation.user_list.BaseActivityBehavior
 
-abstract class BaseActivity<T:ViewDataBinding,VM:BaseViewModel>:AppCompatActivity() {
+abstract class BaseActivity<T:ViewDataBinding,VM:BaseViewModel>:AppCompatActivity(),BaseActivityBehavior {
     protected lateinit var binding:T
     protected abstract val viewModel:VM
     abstract val layoutResourceId:Int
@@ -14,6 +15,8 @@ abstract class BaseActivity<T:ViewDataBinding,VM:BaseViewModel>:AppCompatActivit
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,layoutResourceId)
         binding.lifecycleOwner = this
-
+        initView()
+        observeData()
+        setEvent()
     }
 }

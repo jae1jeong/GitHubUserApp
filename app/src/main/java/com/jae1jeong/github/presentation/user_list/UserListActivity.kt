@@ -7,7 +7,7 @@ import com.jae1jeong.github.R
 import com.jae1jeong.github.databinding.ActivityUserlistBinding
 import com.jae1jeong.github.presentation.base.BaseActivity
 
-class UserListActivity: BaseActivity<ActivityUserlistBinding,UserListViewModel>(),BaseActivityBehavior {
+class UserListActivity: BaseActivity<ActivityUserlistBinding,UserListViewModel>() {
 
     override val viewModel: UserListViewModel by viewModels()
     override val layoutResourceId: Int
@@ -17,18 +17,6 @@ class UserListActivity: BaseActivity<ActivityUserlistBinding,UserListViewModel>(
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.viewModel = viewModel
-    }
-
-    override fun initView() {
-
-    }
-
-    override fun observeData() {
-
-    }
-
-    override fun setEvent() {
-
     }
 
 }
