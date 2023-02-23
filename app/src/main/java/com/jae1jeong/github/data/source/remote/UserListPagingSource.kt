@@ -8,8 +8,8 @@ import retrofit2.HttpException
 
 class UserListPagingSource(
     private val githubService: GithubService,
-    private val query:String
-):PagingSource<Int,UserUiModel>() {
+    private val query: String
+) : PagingSource<Int, UserUiModel>() {
     override fun getRefreshKey(state: PagingState<Int, UserUiModel>): Int? {
         return state.anchorPosition?.let {
             val anchorPage = state.closestPageToPosition(anchorPosition = it)
@@ -19,11 +19,11 @@ class UserListPagingSource(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, UserUiModel> {
 
-        try{
+        try {
             val page = params.key ?: 1
             val pageSize = params.loadSize
 
-            val response = githubService.searchUsers(query,page,pageSize)
+            val response = githubService.searchUsers(query, page, pageSize)
             val userList = response.data?.items?.map {
                 it.toUserUiModel()
             } ?: return LoadResult.Error(NullPointerException("response.data.items is null"))
@@ -33,9 +33,9 @@ class UserListPagingSource(
                 prevKey = if (page == 1) null else page - 1,
                 nextKey = if (userList.isEmpty()) null else page + 1
             )
-        }catch (e:HttpException){
+        } catch (e: HttpException) {
             return LoadResult.Error(e)
-        }catch (e: Exception){
+        } catch (e: Exception) {
             return LoadResult.Error(e)
         }
 
