@@ -1,5 +1,6 @@
 package com.jae1jeong.github.data.source.remote
 
+import com.jae1jeong.github.data.source.dto.GitHubUserDetailResponse
 import com.jae1jeong.github.data.source.dto.GitHubUserSearchResponse
 import com.jae1jeong.github.utlis.Resource
 import retrofit2.http.GET
@@ -15,7 +16,7 @@ interface GithubService {
 
     // user detail
     @GET("users/{username}")
-    suspend fun getUser(@Query("username") username: String): Nothing
+    suspend fun getUser(@Query("username") username: String): Resource<GitHubUserDetailResponse>
 
     // user repos
     @GET("users/{username}/repos")
