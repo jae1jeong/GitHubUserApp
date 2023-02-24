@@ -5,15 +5,19 @@ import android.util.Log
 import android.widget.LinearLayout
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jae1jeong.github.R
 import com.jae1jeong.github.databinding.ActivityUserlistBinding
 import com.jae1jeong.github.presentation.base.BaseActivity
+import com.jae1jeong.github.presentation.dialog.LoadingDialog
 import com.jae1jeong.github.utlis.decoration.UserListDividerDecoration
+import com.jae1jeong.github.utlis.throttleFirst
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import reactivecircus.flowbinding.android.view.clicks
 import reactivecircus.flowbinding.android.widget.textChanges
 import javax.inject.Inject
 
@@ -25,9 +29,11 @@ class UserListActivity: BaseActivity<ActivityUserlistBinding,UserListViewModel>(
         get() = R.layout.activity_userlist
 
     @Inject lateinit var userListAdapter:UserListAdapter
+    private lateinit var loadingDialog:LoadingDialog
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        loadingDialog = LoadingDialog(this)
         super.onCreate(savedInstanceState)
         binding.viewModel = viewModel
     }
@@ -41,11 +47,17 @@ class UserListActivity: BaseActivity<ActivityUserlistBinding,UserListViewModel>(
     }
 
     override fun observeData() {
-        viewModel.loadingEvent.observe(this){
-            if(it){
-
-            }else{
-
+        userListAdapter.addLoadStateListener { loadState ->
+            when(loadState.source.refresh){
+                is LoadState.Loading -> {
+                    loadingDialog.show()
+                }
+                is LoadState.NotLoading -> {
+                    loadingDialog.dismiss()
+                }
+                is LoadState.Error -> {
+                    loadingDialog.dismiss()
+                }
             }
         }
     }
@@ -66,6 +78,10 @@ class UserListActivity: BaseActivity<ActivityUserlistBinding,UserListViewModel>(
                     }
                 }
             }.launchIn(lifecycleScope)
+
+        userListAdapter.itemClickListener = {
+
+        }
     }
 
 }
