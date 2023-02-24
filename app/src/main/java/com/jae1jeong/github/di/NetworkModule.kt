@@ -1,6 +1,7 @@
 package com.jae1jeong.github.di
 
 import com.jae1jeong.github.BuildConfig
+import com.jae1jeong.github.data.source.remote.GithubService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,5 +21,11 @@ object NetworkModule {
             .baseUrl("https://api.github.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideGithubService(retrofit: Retrofit):GithubService{
+        return retrofit.create(GithubService::class.java)
     }
 }

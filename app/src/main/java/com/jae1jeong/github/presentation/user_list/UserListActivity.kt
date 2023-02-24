@@ -5,29 +5,35 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.jae1jeong.github.R
+import com.jae1jeong.github.data.source.dto.User
 import com.jae1jeong.github.databinding.ActivityUserlistBinding
 import com.jae1jeong.github.presentation.base.BaseActivity
-import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import reactivecircus.flowbinding.android.widget.textChanges
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class UserListActivity: BaseActivity<ActivityUserlistBinding,UserListViewModel>() {
 
     override val viewModel: UserListViewModel by viewModels()
     override val layoutResourceId: Int
         get() = R.layout.activity_userlist
 
+    @Inject lateinit var userListAdapter:UserListAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding.viewModel = viewModel
         super.onCreate(savedInstanceState)
+        binding.viewModel = viewModel
     }
 
     override fun initView() {
-
+        binding.rvSearchUsers.apply {
+            setHasFixedSize(true)
+            adapter = userListAdapter
+        }
     }
 
     override fun observeData() {
@@ -40,7 +46,9 @@ class UserListActivity: BaseActivity<ActivityUserlistBinding,UserListViewModel>(
             .filter { !it.toString().isNullOrEmpty() }
             .onEach {
                 lifecycleScope.launch {
-                    viewModel.getUsersByKeyword(it.toString())
+                    viewModel.getUsersByKeyword(it.toString()).collectLatest {
+                        userListAdapter.submitData(it)
+                    }
                 }
             }.launchIn(lifecycleScope)
     }
