@@ -14,7 +14,7 @@ import retrofit2.http.Query
 interface GithubService {
     // search user by keyword
     @GET(Routers.SEARCH_USER)
-    suspend fun searchUsers(@Query("q") query: String): Resource<GitHubUserSearchResponse>
+    suspend fun searchUsers(@Query("q") query: String,@Query("page")page:Int,@Query("per_page") pageSize:Int = 20): GitHubUserSearchResponse
 
     // user detail
     @GET(Routers.GET_USER)

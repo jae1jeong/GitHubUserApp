@@ -5,4 +5,5 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="title_activity_user_detail">UserDetailActivity</string>
+    <string name="search_github_user">Github 유저 검색..</string>
 </resources>

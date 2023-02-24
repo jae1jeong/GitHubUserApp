@@ -58,6 +58,7 @@ dependencies {
     def retrofit_version = "2.9.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.1'
 
     // coroutines
     def  coroutines_version = "1.5.2"
@@ -82,6 +83,28 @@ dependencies {
 
     implementation "com.google.dagger:hilt-android:$hilt_version"
     annotationProcessor "com.google.dagger:hilt-compiler:$hilt_version"
+
+    // paging3
+    def paging_version = "3.1.1"
+    implementation "androidx.paging:paging-runtime:$paging_version"
+
+    // alternatively - without Android dependencies for tests
+    testImplementation "androidx.paging:paging-common:$paging_version"
+
+    // glide
+    def glide_version = "4.12.0"
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    kapt "com.github.bumptech.glide:compiler:$glide_version"
+
+    // flow binding
+    def flow_binding_version = "1.2.0"
+    implementation "io.github.reactivecircus.flowbinding:flowbinding-android:$flow_binding_version"
+    implementation "io.github.reactivecircus.flowbinding:flowbinding-core:$flow_binding_version"
+    implementation "io.github.reactivecircus.flowbinding:flowbinding-swiperefreshlayout:$flow_binding_version"
+    implementation "io.github.reactivecircus.flowbinding:flowbinding-viewpager2:$flow_binding_version"
+    implementation "io.github.reactivecircus.flowbinding:flowbinding-recyclerview:$flow_binding_version"
+    implementation "io.github.reactivecircus.flowbinding:flowbinding-material:$flow_binding_version"
+    implementation "io.github.reactivecircus.flowbinding:flowbinding-appcompat:$flow_binding_version"
 
 
 
