@@ -31,6 +31,7 @@ class UserListActivity: BaseActivity<ActivityUserlistBinding,UserListViewModel>(
         binding.rvSearchUsers.apply {
             setHasFixedSize(true)
             adapter = userListAdapter
+            addItemDecoration(UserListDecoration())
         }
     }
 
