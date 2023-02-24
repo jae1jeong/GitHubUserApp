@@ -7,7 +7,7 @@ import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.recyclerview.widget.RecyclerView
 
-class UserListDividerDecoration(private val lineThickness:Int,@ColorInt private val lineColor:Int?):RecyclerView.ItemDecoration() {
+class UserListDividerDecoration(private val lineThickness:Int,@ColorInt private val lineColor:Int?=null):RecyclerView.ItemDecoration() {
 
 
     override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
