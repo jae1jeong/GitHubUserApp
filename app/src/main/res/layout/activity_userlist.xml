@@ -15,7 +15,6 @@
         android:layout_height="match_parent"
         tools:context=".presentation.user_list.UserListActivity">
 
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout"
             android:layout_width="match_parent"
