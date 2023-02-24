@@ -1,23 +1,18 @@
 package com.jae1jeong.github.presentation.user_list
 
 import android.os.Bundle
-import android.util.Log
-import android.widget.LinearLayout
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.paging.PagingData
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.jae1jeong.github.R
 import com.jae1jeong.github.databinding.ActivityUserlistBinding
 import com.jae1jeong.github.presentation.base.BaseActivity
 import com.jae1jeong.github.presentation.dialog.LoadingDialog
 import com.jae1jeong.github.utlis.decoration.UserListDividerDecoration
-import com.jae1jeong.github.utlis.throttleFirst
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import reactivecircus.flowbinding.android.view.clicks
 import reactivecircus.flowbinding.android.widget.textChanges
 import javax.inject.Inject
 
