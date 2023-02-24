@@ -16,7 +16,12 @@ abstract class BaseActivity<T:ViewDataBinding,VM:BaseViewModel>:AppCompatActivit
         binding = DataBindingUtil.setContentView(this,layoutResourceId)
         binding.lifecycleOwner = this
         initView()
-        observeData()
+
+    }
+
+    override fun onStart() {
+        super.onStart()
         setEvent()
+        observeData()
     }
 }
