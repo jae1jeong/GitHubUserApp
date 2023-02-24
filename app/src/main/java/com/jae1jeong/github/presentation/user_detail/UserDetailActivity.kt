@@ -1,21 +1,25 @@
 package com.jae1jeong.github.presentation.user_detail
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.viewModels
+import com.jae1jeong.github.R
 import com.jae1jeong.github.databinding.ActivityUserDetailBinding
+import com.jae1jeong.github.presentation.base.BaseActivity
+import dagger.hilt.android.AndroidEntryPoint
 
-class UserDetailActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityUserDetailBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        binding = ActivityUserDetailBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
+@AndroidEntryPoint
+class UserDetailActivity() : BaseActivity<ActivityUserDetailBinding,UserDetailViewModel>() {
+    override val viewModel: UserDetailViewModel by viewModels()
+    override val layoutResourceId: Int = R.layout.activity_user_detail
+    override fun initView() {
 
     }
 
+    override fun observeData() {
+
+    }
+
+    override fun setEvent() {
+
+    }
 
 }
