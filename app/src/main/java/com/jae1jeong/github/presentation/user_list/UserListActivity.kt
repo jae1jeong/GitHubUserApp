@@ -2,10 +2,8 @@ package com.jae1jeong.github.presentation.user_list
 
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.jae1jeong.github.R
-import com.jae1jeong.github.data.source.dto.User
 import com.jae1jeong.github.databinding.ActivityUserlistBinding
 import com.jae1jeong.github.presentation.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
