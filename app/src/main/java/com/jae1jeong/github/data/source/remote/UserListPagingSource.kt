@@ -1,5 +1,6 @@
 package com.jae1jeong.github.data.source.remote
 
+import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.jae1jeong.github.data.mapper.toUserUiModel
@@ -24,10 +25,10 @@ class UserListPagingSource(
             val pageSize = params.loadSize
 
             val response = githubService.searchUsers(query, page, pageSize)
-            val userList = response.data?.items?.map {
-                it.toUserUiModel()
+            val userList = response.items?.map { it.toUserUiModel()
             } ?: return LoadResult.Error(NullPointerException("response.data.items is null"))
 
+            Log.d("TAG", "load: $userList")
             return LoadResult.Page(
                 data = userList,
                 prevKey = if (page == 1) null else page - 1,
